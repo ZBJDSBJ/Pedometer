@@ -5,6 +5,7 @@ MVP实现Android手机记步功能
 对于部分手机关闭屏幕不能用加速度记步的也做了修改，但是没上传代码。
 
 效果图如下：
+
 ![image](https://github.com/ZBJDSBJ/Pedometer/blob/master/screen_one.jpg)
 
 ![image](https://github.com/ZBJDSBJ/Pedometer/blob/master/screen_two.jpg)
