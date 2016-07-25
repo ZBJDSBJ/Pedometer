@@ -1,4 +1,4 @@
-package com.lost.zou.pedometer.model.model.pedometer;
+package com.lost.zou.pedometer.data.model.pedometer;
 
 /**
  * Created by zoubo on 2015/10/24.

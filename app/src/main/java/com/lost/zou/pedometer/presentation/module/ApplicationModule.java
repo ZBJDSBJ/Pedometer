@@ -17,8 +17,8 @@ package com.lost.zou.pedometer.presentation.module;
 
 import android.content.Context;
 
-import com.lost.zou.pedometer.model.model.pedometer.PedometerManager;
-import com.lost.zou.pedometer.model.model.pedometer.PedometerRepositoryIml;
+import com.lost.zou.pedometer.data.model.pedometer.PedometerManager;
+import com.lost.zou.pedometer.data.model.pedometer.PedometerRepositoryIml;
 import com.lost.zou.pedometer.presentation.common.BaseApplication;
 
 

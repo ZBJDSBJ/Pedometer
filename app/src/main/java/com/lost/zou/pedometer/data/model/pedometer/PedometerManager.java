@@ -1,4 +1,4 @@
-package com.lost.zou.pedometer.model.model.pedometer;
+package com.lost.zou.pedometer.data.model.pedometer;
 
 import android.app.ActivityManager;
 import android.content.Context;

@@ -8,7 +8,7 @@ import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.lost.zou.pedometer.model.model.pedometer.PedometerRepositoryIml;
+import com.lost.zou.pedometer.data.model.pedometer.PedometerRepositoryIml;
 import com.lost.zou.pedometer.presentation.common.BaseApplication;
 import com.lost.zou.pedometer.presentation.common.utils.HardwarePedometerUtil;
 import com.lost.zou.pedometer.presentation.module.ApplicationModule;

@@ -1,7 +1,7 @@
-package com.lost.zou.pedometer.model.repository;
+package com.lost.zou.pedometer.data.repository;
 
 
-import com.lost.zou.pedometer.model.model.pedometer.IGetPedometerResult;
+import com.lost.zou.pedometer.data.model.pedometer.IGetPedometerResult;
 
 /**
  * Created by zoubo

@@ -1,4 +1,4 @@
-package com.lost.zou.pedometer.model.model.pedometer;
+package com.lost.zou.pedometer.data.model.pedometer;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -7,8 +7,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-import com.lost.zou.pedometer.model.model.database.PedometerCardEntity;
-import com.lost.zou.pedometer.model.repository.PedometerRepository;
+import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
+import com.lost.zou.pedometer.data.repository.PedometerRepository;
 import com.lost.zou.pedometer.presentation.common.BaseApplication;
 import com.lost.zou.pedometer.presentation.common.utils.DateUtil;
 
