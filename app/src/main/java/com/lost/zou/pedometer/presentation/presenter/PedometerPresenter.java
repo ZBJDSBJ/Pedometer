@@ -53,7 +53,7 @@ public class PedometerPresenter implements Presenter {
     }
 
     /**
-     * 获取当天计步器的数据：1、如果当天有记步数据，则返回当天的记步数据
+     * 获取计步器的数据
      */
     public void getPedometerStep() {
         mPedometerRepository.getPedometerStep(new IGetPedometerResult() {

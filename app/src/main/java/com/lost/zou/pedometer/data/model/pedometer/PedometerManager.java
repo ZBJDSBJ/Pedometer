@@ -12,7 +12,7 @@ import com.lost.zou.pedometer.presentation.view.service.PedometerService;
 
 /**
  * Created by zoubo
- * 计步器管理类：1、通知管理   2、记步服务管理
+ * 计步器管理类：1、记步服务管理
  */
 public class PedometerManager {
     private boolean mIsServiceRunning = false;
