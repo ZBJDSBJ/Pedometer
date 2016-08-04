@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.lost.zou.pedometer.presentation.common.utils.DrawUtil;
+import com.lost.zou.pedometer.presentation.common.utils.FileUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,6 +28,15 @@ public class BaseApplication extends Application {
         super.onCreate();
 
         DrawUtil.resetDensity(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                FileUtil.createNewFile(Constant.Path.ACCOUNT_DIR);
+            }
+        }).start();
+
     }
 
     public static Context getAppContext() {

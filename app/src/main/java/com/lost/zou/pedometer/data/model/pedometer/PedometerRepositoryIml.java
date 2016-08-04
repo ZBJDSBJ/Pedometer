@@ -10,7 +10,9 @@ import android.util.Log;
 import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
 import com.lost.zou.pedometer.data.repository.PedometerRepository;
 import com.lost.zou.pedometer.presentation.common.BaseApplication;
+import com.lost.zou.pedometer.presentation.common.Constant;
 import com.lost.zou.pedometer.presentation.common.utils.DateUtil;
+import com.lost.zou.pedometer.presentation.common.utils.FileUtil;
 
 
 /**
@@ -27,7 +29,7 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
     /**
      * 加速度传感器计算相应参数
      */
-    private static float SENSITIVITY = 6.0f;   //SENSITIVITY灵敏度
+    private static float SENSITIVITY = 5f;   //SENSITIVITY灵敏度
     private float mLastValues[] = new float[3 * 2];
     private float mScale[] = new float[2];
     private float mYOffset;
@@ -167,6 +169,9 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
 
         Log.i("zou", "<PedometerRepositoryIml> showSteps TODAY_ENTITY_STEPS= " + TODAY_ENTITY_STEPS + " steps = " + steps);
 
+        FileUtil.writeFileSdcard(Constant.Path.ACCOUNT_DIR + "pedometer.txt", String.valueOf(steps));
+
+
         mTodayStepEntity.setStepCount(steps);
 
         PedometerEvent event = new PedometerEvent();
@@ -209,7 +214,7 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
     long timeOfNow = 0; //当前传感器的值
     float gravityNew = 0; //上次传感器的值
     float gravityOld = 0; //动态阈值需要动态的数据，这个值用于这些动态数据的阈值
-    final float initialValue = 1.3f; //初始阈值
+    final float initialValue = 5.3f; //初始阈值
     float ThreadValue = 2.0f;
     boolean lastStatus = true;
 

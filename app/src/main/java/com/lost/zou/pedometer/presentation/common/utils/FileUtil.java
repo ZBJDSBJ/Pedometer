@@ -4,14 +4,19 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.util.Log;
 
+import com.lost.zou.pedometer.presentation.common.Constant;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 
 /**
  * @author zoubo
@@ -314,5 +319,61 @@ public class FileUtil {
             return names[names.length - 1];
         }
         return null;
+    }
+
+    //创建文件夹及文件
+    public static void CreateText(String fileName) throws IOException {
+        File file = new File(Constant.Path.ACCOUNT_DIR);
+        if (!file.exists()) {
+            try {
+                //按照指定的路径创建文件夹
+                file.mkdirs();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
+        File dir = new File(fileName);
+        if (!dir.exists()) {
+            try {
+                //在指定的文件夹中创建文件
+                dir.createNewFile();
+            } catch (Exception e) {
+            }
+        }
+
+    }
+
+    /**
+     * 读取Txt文件并写入新内容到原来的内容后面
+     */
+    public static void writeFileSdcard(String fileName, String str) {
+
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        String datetime = "";
+        try {
+            CreateText(fileName);
+            SimpleDateFormat tempDate = new SimpleDateFormat("yyyy-MM-dd" + " "
+                    + "hh:mm:ss");
+            datetime = tempDate.format(new java.util.Date()).toString();
+            fw = new FileWriter(fileName, true);//
+            // 创建FileWriter对象，用来写入字符流
+            bw = new BufferedWriter(fw); // 将缓冲对文件的输出
+            String myreadline = datetime + "[]" + str;
+
+            bw.write(myreadline + "\n"); // 写入文件
+            bw.newLine();
+            bw.flush(); // 刷新该流的缓冲
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                bw.close();
+                fw.close();
+            } catch (IOException e1) {
+            }
+        }
+
     }
 }
