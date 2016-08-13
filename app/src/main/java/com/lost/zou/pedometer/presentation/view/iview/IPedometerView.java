@@ -1,7 +1,7 @@
 package com.lost.zou.pedometer.presentation.view.iview;
 
 
-import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
+import com.lost.zou.pedometer.data.model.database.core.PedometerCardEntity;
 
 /**
  * Created by zoubo

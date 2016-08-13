@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
+import com.lost.zou.pedometer.data.model.database.core.PedometerCardEntity;
 import com.lost.zou.pedometer.data.repository.PedometerRepository;
 import com.lost.zou.pedometer.presentation.common.BaseApplication;
 import com.lost.zou.pedometer.presentation.common.Constant;
@@ -44,7 +44,7 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
     private float mLastDiff[] = new float[3 * 2];
     private int mLastMatch = -1;
 
-    private int mAccelerometer = 2;  //算法1 2
+    private int mAccelerometerMode = 2;  //算法1 2
 
 
     private PedometerCardEntity mTodayStepEntity;
@@ -98,7 +98,7 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
                             + " CURRENT_STEP = " + CURRENT_STEP);
                 }
             } else if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                if (mAccelerometer == 1) {
+                if (mAccelerometerMode == 1) {
                     //加速度取模
                     float vSum = 0;
                     for (int i = 0; i < 3; i++) {
@@ -139,7 +139,7 @@ public class PedometerRepositoryIml implements SensorEventListener, PedometerRep
                     }
                     mLastDirections[k] = direction;
                     mLastValues[k] = v;
-                } else if (mAccelerometer == 2) {
+                } else if (mAccelerometerMode == 2) {
                     for (int i = 0; i < 3; i++) {
                         oriValues[i] = event.values[i];
                     }

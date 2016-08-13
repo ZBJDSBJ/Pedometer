@@ -40,7 +40,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
+import com.lost.zou.pedometer.data.model.database.core.PedometerCardEntity;
 import com.lost.zou.pedometer.presentation.common.utils.HardwarePedometerUtil;
 import com.lost.zou.pedometer.presentation.module.ApplicationModule;
 import com.lost.zou.pedometer.presentation.presenter.PedometerPresenter;

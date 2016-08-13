@@ -1,7 +1,7 @@
 package com.lost.zou.pedometer.presentation.presenter;
 
 
-import com.lost.zou.pedometer.data.model.database.PedometerCardEntity;
+import com.lost.zou.pedometer.data.model.database.core.PedometerCardEntity;
 import com.lost.zou.pedometer.data.model.pedometer.IGetPedometerResult;
 import com.lost.zou.pedometer.data.model.pedometer.PedometerEvent;
 import com.lost.zou.pedometer.data.repository.PedometerRepository;
