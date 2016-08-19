@@ -97,6 +97,7 @@
         android:id="@+id/view_windmill"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginTop="20dp"
         app:CircleRadius="8"
         app:WindVelocity="3"/>
 
@@ -106,7 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <com.lost.zou.pedometer.presentation.view.component.leafLoading.LeafLoadingView
             android:id="@+id/leaf_loading"
