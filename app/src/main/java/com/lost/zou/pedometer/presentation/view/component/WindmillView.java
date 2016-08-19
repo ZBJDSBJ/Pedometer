@@ -1,5 +1,6 @@
 package com.lost.zou.pedometer.presentation.view.component;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -7,11 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 
 import com.lost.zou.pedometer.R;
 
@@ -22,12 +20,12 @@ import com.lost.zou.pedometer.R;
  * 2、旋转扇叶
  */
 public class WindmillView extends View {
-    private Context mContext;
 
     private static final int DEFAULT_LEAF_COLOR = Color.RED;
     private int mLeafColor = DEFAULT_LEAF_COLOR;
     private int mCircleRadius = 5;
     private float mDefaultBezierDel = 4.3f;  // 贝塞尔曲线坐标默认差值
+    private int mMaxWind = 15;  //最大风速
 
 
     private Paint mPaint;
@@ -37,7 +35,7 @@ public class WindmillView extends View {
     //扇叶的五个坐标点
     private float x1, y1, x2, y2, x3, y3, x4, y4, x5, y5;
 
-    private RotateAnimation mAnimation;
+    private ObjectAnimator mAnimation;
 
     private int mWindVelocity = 1; //风速
 
@@ -52,7 +50,6 @@ public class WindmillView extends View {
 
     public WindmillView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.WindmillView, defStyleAttr, 0);
         int n = array.getIndexCount();
@@ -78,11 +75,7 @@ public class WindmillView extends View {
     private void init() {
         initPaint();
 
-        mAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF,
-                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        mAnimation.setRepeatCount(-1); //设置为无限重复
-        mAnimation.setInterpolator(new LinearInterpolator());//匀速
-        mAnimation.setFillAfter(true);
+        initAnimation();
     }
 
     private void initPaint() {
@@ -91,6 +84,19 @@ public class WindmillView extends View {
         mPaint.setAntiAlias(true);
         mPaint.setStrokeWidth(2);
         mPaint.setColor(mLeafColor);
+    }
+
+    private void initAnimation() {
+
+        mAnimation = ObjectAnimator.ofFloat(this, "rotation", 0f, 360f);
+        mAnimation.setRepeatCount(-1);
+        mAnimation.setInterpolator(new LinearInterpolator()); //匀速
+
+//        mAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF,
+//                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//        mAnimation.setRepeatCount(-1); //设置为无限重复
+//        mAnimation.setInterpolator(new LinearInterpolator());
+//        mAnimation.setFillAfter(true);
     }
 
 
@@ -118,6 +124,7 @@ public class WindmillView extends View {
 
     /**
      * 给出贝塞尔曲线坐标
+     * 效果来自：http://cubic-bezier.com
      */
     private void measureBezier() {
         x1 = mRadius / 2;
@@ -159,6 +166,11 @@ public class WindmillView extends View {
 
     /**
      * 绘制扇叶
+     * <p>
+     * 1、放到起始点
+     * mPath.moveTo(mStartPointX, mStartPointY);
+     * 2、三阶阶贝塞尔曲线
+     * mPath.quadTo(mAuxiliaryX1, mAuxiliaryY1, mAuxiliaryX2, mAuxiliaryY2, mEndPointX, mEndPointY);
      *
      * @param canvas
      */
@@ -178,21 +190,26 @@ public class WindmillView extends View {
     }
 
 
+    /**
+     * 设置风速
+     */
     public void setWindVelocity(int value) {
         if (value == 0) {
             value = 1;
         }
-        if (value > 15) {
-            value = 15;
+        if (value > mMaxWind) {
+            value = mMaxWind;
         }
         this.mWindVelocity = value;
     }
 
+    /**
+     * 开始动画
+     */
     public void startAnim() {
         stopAnim();
-        mAnimation.setDuration(1800 - mWindVelocity * 100);
-        Log.i("zou", 1800 - mWindVelocity * 100 + "");
-        startAnimation(mAnimation);
+        mAnimation.setDuration((mMaxWind - mWindVelocity) * 100);
+        mAnimation.start();
     }
 
     public void stopAnim() {
