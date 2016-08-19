@@ -45,6 +45,7 @@ import com.lost.zou.pedometer.presentation.common.utils.HardwarePedometerUtil;
 import com.lost.zou.pedometer.presentation.module.ApplicationModule;
 import com.lost.zou.pedometer.presentation.presenter.PedometerPresenter;
 import com.lost.zou.pedometer.presentation.view.activity.BaseActivity;
+import com.lost.zou.pedometer.presentation.view.component.WindmillView;
 import com.lost.zou.pedometer.presentation.view.component.leafLoading.AnimationUtils;
 import com.lost.zou.pedometer.presentation.view.component.leafLoading.LeafLoadingView;
 import com.lost.zou.pedometer.presentation.view.iview.IPedometerView;
@@ -75,6 +76,8 @@ public class MainActivity extends BaseActivity implements IPedometerView {
     ImageView fanPic;
     @BindView(R.id.leaf_content)
     RelativeLayout leafContent;
+    @BindView(R.id.view_windmill)
+    WindmillView mViewWindmill;
 
 
     private boolean mIsStart = false;
@@ -105,6 +108,8 @@ public class MainActivity extends BaseActivity implements IPedometerView {
         } else {
             tvStepCounter.setText("否");
         }
+
+        mViewWindmill.startAnim();
     }
 
     @Override

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="WindmillView">
+        <attr name="leaf_color" format="color"/>
+        <attr name="WindVelocity" format="integer"/>
+        <attr name="CircleRadius" format="integer"/>
+    </declare-styleable>
+
+</resources>
